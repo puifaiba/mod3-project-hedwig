@@ -1,0 +1,15 @@
+.client {
+    display: grid;
+    grid-template-rows: 38px auto min-content;
+    grid-template-columns: auto;
+    grid-template-areas: 'top_nav_bar, workspace_container';
+}
+
+.top_nav_bar {
+    grid-area: 'top_nav_bar';
+}
+
+.workspace_container {
+    grid-area: 'workspace_container';
+}
+
