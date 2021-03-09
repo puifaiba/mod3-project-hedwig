@@ -37,6 +37,12 @@ body, html {
     position: relative;
     background-color: #7a0000;
 }
+
+.left_bar_head {
+    grid-area: left_bar_head;
+    background-color: #520000;
+    position: relative;
+}
     
 .workspace_right_bar {
     display: grid;
@@ -46,6 +52,18 @@ body, html {
     grid-area: workspace_right_bar;
     position: relative;
     background-color: #ff0000;
+}
+
+.right_bar_head {
+    grid-area: right_bar_head;
+    background-color: #960000;
+    position: relative;
+}
+
+.right_bar_foot {
+    grid-area: right_bar_foot;
+    background-color: #960000;
+    position: relative;
 }
     
 .left_resizer {
@@ -104,4 +122,16 @@ body, html {
     background-color: #ffffff;
     min-width: 0;
     min-height: 0;
+}
+
+.workspace_main_head {
+    grid-area: workspace_main_head;
+    background-color: #bbbbbb;
+    position: relative;
+}
+
+.workspace_main_foot {
+    grid-area: workspace_main_foot;
+    background-color: #bbbbbb;
+    position: relative;
 }
