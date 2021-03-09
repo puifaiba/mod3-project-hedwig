@@ -16,21 +16,27 @@
                     <div class='nav_profile'></div>
                 </div>
                 <div class='workspace_container'>
-                    <div class='workspace_left_bar'>
-
+                    <div class='workspace_left_bar' style='width: 250px;'>
+                        <div class='left_bar_head'></div>
+                        <div class='left_bar_body'></div>
                     </div>
-                    <div class='left_resizer'>
-
+                    <div class='left_resizer' style='left: 245px;'>
+                        <input type='range' class='left_resize_input' min='180' max='600' step='10' value='250'>
                     </div>
                     <div role='main' class='workspace_main'>
-
+                        <div class='workspace_main_head'></div>
+                        <div class='workspace_main_body'></div>
+                        <div class='workspace_main_foot'></div>
                     </div>
-                    <div class='right_resizer'>
-
+                    <div class='right_resizer' style='right: 345px;'>
+                        <input type='range' class='right_resize_input' min='260' max='1000' step='10' value='350'>
                     </div>
-                    <div class='workspace_right_bar'>
-
+                    <div class='workspace_right_bar' style='width: 350px;'>
+                        <div class='right_bar_head'></div>
+                        <div class='right_bar_body'></div>
+                        <div class='right_bar_foot'></div>
                     </div>
+                    <style>.workspace_container { grid-template-columns: 250px auto 350px; }</style>
                 </div>
             </div>
         </div>
