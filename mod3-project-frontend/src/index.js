@@ -2,50 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
     barResizer()
 })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const barResizer = () => {
     const left_min_size = 180
     const left_max_size = 600
@@ -73,11 +29,11 @@ const barResizer = () => {
             const right_width = parseFloat(getComputedStyle(right_bar, null).getPropertyValue('width').replace('px', ''));
             if(current_bar === document.querySelector('.workspace_left_bar')){
                 current_bar.style.width = '250px'
-                current_resize_bar.style.left = '245px'
+                current_resize_bar.style.left = '250px'
                 workspace_container.style.gridTemplateColumns = `250px auto ${right_width}px`
             }else if(current_bar === document.querySelector('.workspace_right_bar')){
                 current_bar.style.width = '350px'
-                current_resize_bar.style.right = '345px'
+                current_resize_bar.style.right = '350px'
                 workspace_container.style.gridTemplateColumns = `${left_width}px auto 350px`
             }
         })
