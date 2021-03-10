@@ -2,6 +2,50 @@ document.addEventListener('DOMContentLoaded', () => {
     barResizer()
 })
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const barResizer = () => {
     const left_min_size = 180
     const left_max_size = 600
