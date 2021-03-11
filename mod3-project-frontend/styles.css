@@ -134,3 +134,11 @@ html {
   color: #ffffff;
   text-align: right;
 }
+
+.sorting_hat_section {
+  background-color: #000000;
+  display: block;
+  margin: auto;
+  position: relative;
+  transform: translateY(50%);
+}
