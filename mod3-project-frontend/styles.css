@@ -116,11 +116,6 @@ body, html {
     margin-right: 10px;
 }
 
-/* .house_logo {
-    display: inline-flex;
-    margin-right: auto;
-} */
-
 .right_bar_foot {
     grid-area: right_bar_foot;
     background-color: #960000;
@@ -166,4 +161,47 @@ body, html {
     background-repeat: no-repeat;
     background-size: contain;
     opacity: 20%;
+}
+
+.main_chat_box {
+    display: relative;
+    width: 1100px;
+    height: 80px;
+    align-items: center;
+    resize: none;
+    border: none;
+    background-color: #919191;
+}
+
+/* .submit_button_main {
+    display: relative;
+    background-color: #919191;
+    height: 45px;
+    width: 45px;
+    align-items: center;
+} */
+
+.main_chat_form {
+    padding: 15px;
+    height: 80px;
+    width: 1100px;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+    height: auto;
+}
+
+::-webkit-scrollbar-track {
+    background: inherit;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: inherit; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(189, 189, 189);  
 }

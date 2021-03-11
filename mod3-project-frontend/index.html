@@ -7,15 +7,33 @@
         <title>Hedwig</title>
         <link rel="stylesheet" type="text/css" href="styles.css" />
         <script defer type="text/javascript" src="src/index.js"></script>
+        <script src="https://cdn.tiny.cloud/1/ezzys0p3wvoeh7zcecjdmd6o1q2aiqxi59amule8lt5ezmkp/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+        <script>
+            tinymce.init({
+              selector: "#main_chat_box",
+              plugins: "emoticons link image code lists save",
+              toolbar_location: "bottom",
+              menubar: false,
+              statusbar: false,
+              toolbar: "emoticons | undo redo | bold italic underline strikethrough | link image | code | bullist numlist | save",
+              width: 1287,
+              height: 120
+            });
+        </script>
     </head>
     <body>
         <div class='client_container'>
             <div class='client'>
+
+                <!-- Top Navigation Bar -->
                 <div class='top_nav_bar' role='navigation'>
                     <div class='nav_search'></div>
                     <div class='nav_profile'></div>
                 </div>
+
                 <div class='workspace_container'>
+
+                    <!-- Left Side Bar -->
                     <div class='workspace_left_bar' style='width: 250px;'>
                         <div class='left_bar_head'>
                             <div class='left_head_content'>
@@ -27,11 +45,12 @@
                         <div class='left_bar_body'></div>
                         <div class='resizer' style='left: 250px;'></div>
                     </div>
+
+                    <!-- Center Main Console -->
                     <div role='main' class='workspace_main'>
                         <div class='workspace_main_head'>
                             <div class='main_head_content'>
                                 <div class='main_head_text'>#Gryffindor-hw-wz-090191</div>
-                                <!-- <img class='house_logo' src='./images/gryffindor.png' width='50px' height='55px'> -->
                                 <button class='open_details' type='button'><img src='./images/deathly-hallows.png' width='65px' height='65px' display='flex'></button>
                                 <button class='open_right' type='button' style='display: none;'>➤</button>
                             </div>
@@ -41,9 +60,16 @@
                             <div class='workspace_main_content'></div>
                         </div>
                         <div class='workspace_main_foot'>
-                            <div class='main_foot_content'></div>
+                            <div class='main_foot_content'>
+                                <form class='main_chat_form' action='' method='get'>
+                                    <textarea id='main_chat_box' class='main_chat_box' placeholder='Enter message...'></textarea>
+                                    <input class='submit_button_main' type="submitbtn" display='none'>
+                                </form>
+                            </div>
                         </div>
                     </div>
+
+                    <!-- Left Side Bar -->
                     <div class='workspace_right_bar' style='width: 350px;'>
                         <div class='resizer' style='right: 350px;'></div>
                         <div class='right_bar_head'>
@@ -55,6 +81,8 @@
                         <div class='right_bar_body'></div>
                         <div class='right_bar_foot'></div>
                     </div>
+
+
                 </div>
             </div>
         </div>

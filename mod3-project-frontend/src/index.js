@@ -7,9 +7,8 @@ const buttonEvents = () => {
     document.querySelector('.right_close').addEventListener('click', closeRight)
     document.querySelector('.open_right').addEventListener('click', openRight)
     document.querySelector('.open_details').addEventListener('click', openDetails)
-    document.querySelector('.new_msg').addEventListener('click', () => {
-        console.log('new msg')
-    })
+    document.querySelector('.main_chat_form').addEventListener('keypress', submitMain)
+    document.querySelector('.new_msg').addEventListener('click', newMsg)
 }
 
 const barResizer = () => {
@@ -76,7 +75,7 @@ const barResizer = () => {
     }
 }
 
-const closeRight = (event) => {
+const closeRight = () => {
     const rightBar = document.querySelector('.workspace_right_bar')
     const leftBar = document.querySelector('.workspace_left_bar')
     const left_width = parseFloat(getComputedStyle(leftBar, null).getPropertyValue('width').replace('px', ''));
@@ -86,7 +85,7 @@ const closeRight = (event) => {
     document.querySelector('.open_right').style.display = 'inline-flex'
 }
 
-const openRight = (event) => {
+const openRight = () => {
     const rightBar = document.querySelector('.workspace_right_bar')
     const leftBar = document.querySelector('.workspace_left_bar')
     const left_width = parseFloat(getComputedStyle(leftBar, null).getPropertyValue('width').replace('px', ''));
@@ -97,11 +96,15 @@ const openRight = (event) => {
     document.querySelector('.open_right').style.display = 'none'
 }
 
-const openDetails = (event) => {
-    openRight()
-    document.querySelector('.right_head_text').innerText = 'Details'
+const openDetails = () => {
+    const rightText = document.querySelector('.right_head_text')
+    rightText.innerText = rightText.innerText==='Thread' ? 'Details' : 'Thread';
 }
 
-const newMsg = (event) => {
+const submitMain = (event) => {
+    console.log(event)
+}
 
+const newMsg = () => {
+    console.log('new msg')
 }
