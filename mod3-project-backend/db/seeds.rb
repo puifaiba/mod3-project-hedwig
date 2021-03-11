@@ -42,3 +42,6 @@ hu8 = HouseUser.create!(house_id: ravenclaw.id, user_id: luna.id)
 chat1 = Chatroom.create!(title: "passion-4-potions")
 chat2 = Chatroom.create!(title: "D.A.")
 chat3 = Chatroom.create!(title: "O.W.L. study group")
+
+#chat_user
+cu1 = ChatroomUser.create!(chatroom_id: chat1.id, user_id: harry.id)

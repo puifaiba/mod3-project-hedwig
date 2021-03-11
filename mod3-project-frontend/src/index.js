@@ -1,6 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
     barResizer()
+    buttonEvents()
 })
+
+const buttonEvents = () => {
+    document.querySelector('.right_close').addEventListener('click', closeRight)
+    document.querySelector('.open_right').addEventListener('click', openRight)
+    document.querySelector('.new_msg').addEventListener('click', () => {
+        console.log('new msg')
+    })
+}
 
 const barResizer = () => {
     const left_min_size = 180
@@ -64,4 +73,29 @@ const barResizer = () => {
             window.removeEventListener('mousemove', resize)
         }
     }
+}
+
+const closeRight = (event) => {
+    const rightBar = document.querySelector('.workspace_right_bar')
+    const leftBar = document.querySelector('.workspace_left_bar')
+    const left_width = parseFloat(getComputedStyle(leftBar, null).getPropertyValue('width').replace('px', ''));
+    const workContainer = document.querySelector('.workspace_container')
+    rightBar.style.display = 'none'
+    workContainer.style.gridTemplateColumns = `${left_width}px auto 0px`
+    document.querySelector('.open_right').style.display = 'inline-flex'
+}
+
+const openRight = (event) => {
+    const rightBar = document.querySelector('.workspace_right_bar')
+    const leftBar = document.querySelector('.workspace_left_bar')
+    const left_width = parseFloat(getComputedStyle(leftBar, null).getPropertyValue('width').replace('px', ''));
+    const right_width = parseFloat(getComputedStyle(rightBar, null).getPropertyValue('width').replace('px', ''));
+    const workContainer = document.querySelector('.workspace_container')
+    rightBar.style.display = 'grid'
+    workContainer.style.gridTemplateColumns = `${left_width}px auto ${right_width}px`
+    document.querySelector('.open_right').style.display = 'none'
+}
+
+const newMsg = (event) => {
+
 }

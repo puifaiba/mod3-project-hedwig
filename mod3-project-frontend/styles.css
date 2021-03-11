@@ -32,7 +32,7 @@ body, html {
     display: grid;
     grid-template-areas: 'left_bar_head' 'left_bar_body';
     grid-template-columns: auto;
-    grid-template-rows: 80px auto;
+    grid-template-rows: 60px auto;
     grid-area: workspace_left_bar;
     position: relative;
     background-color: #7a0000;
@@ -56,13 +56,14 @@ body, html {
     grid-area: left_bar_head;
     background-color: #520000;
     position: relative;
+    padding: 0 12px 0 16px;
 }
     
 .workspace_right_bar {
     display: grid;
     grid-template-areas: 'right_bar_head' 'right_bar_body' 'right_bar_foot';
     grid-template-columns: auto;
-    grid-template-rows: 80px auto 150px;
+    grid-template-rows: 60px auto 150px;
     grid-area: workspace_right_bar;
     position: relative;
     background-color: #ff0000;
@@ -72,6 +73,43 @@ body, html {
     grid-area: right_bar_head;
     background-color: #960000;
     position: relative;
+    padding: 0 12px 0 16px;
+}
+
+.right_head_content, .main_head_content, .left_head_content {
+    display: flex;
+    align-items: center;
+    height: 60px;
+    min-width: 0;
+}
+
+.right_head_text, .main_head_text, .left_head_text {
+    display: flex;
+    align-items: center;
+    height: 80px;
+    margin-right: auto;
+    min-width: 0;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.right_close, .open_right, .new_msg {
+    display: inline-flex;
+    margin-left: 4px;
+    cursor: pointer;
+    border-radius: 4px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    justify-content: center;
+    position: relative;
+    height: 36px;
+    width: 36px;
+    background: none;
+    border: 0;
+    align-items: center;
+    font-size: 30px;
 }
 
 .right_bar_foot {
@@ -84,7 +122,7 @@ body, html {
     display: grid;
     grid-template-areas: 'workspace_main_head' 'workspace_main_body' 'workspace_main_foot';
     grid-template-columns: auto;
-    grid-template-rows: 80px auto 150px;
+    grid-template-rows: 60px auto 150px;
     grid-area: workspace_main;
     grid-column: auto;
     width: auto;
@@ -97,6 +135,7 @@ body, html {
     grid-area: workspace_main_head;
     background-color: #bbbbbb;
     position: relative;
+    padding: 0 12px 0 16px;
 }
 
 .workspace_main_foot {
