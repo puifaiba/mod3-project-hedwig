@@ -86,31 +86,40 @@ body, html {
 .right_head_text, .main_head_text, .left_head_text {
     display: flex;
     align-items: center;
-    height: 80px;
     margin-right: auto;
     min-width: 0;
     font-size: 30px;
     font-weight: bold;
 }
 
-.right_close, .open_right, .new_msg {
+.left_head_text {
+    margin-left: 12px;
+}
+
+.right_close, .open_right, .new_msg, .open_details{
     display: inline-flex;
     margin-left: 4px;
     cursor: pointer;
-    border-radius: 4px;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
-    border-bottom-left-radius: 4px;
     justify-content: center;
     position: relative;
     height: 36px;
     width: 36px;
     background: none;
-    border: 0;
+    border: none;
+    padding: 0;
+    outline: none;
     align-items: center;
     font-size: 30px;
 }
+
+.open_details {
+    margin-right: 10px;
+}
+
+/* .house_logo {
+    display: inline-flex;
+    margin-right: auto;
+} */
 
 .right_bar_foot {
     grid-area: right_bar_foot;
@@ -142,4 +151,19 @@ body, html {
     grid-area: workspace_main_foot;
     background-color: #bbbbbb;
     position: relative;
+}
+
+.workspace_main_body {
+    grid-area: workspace_main_body;
+    position: relative;
+}
+
+.workspace_main_back {
+    display: relative;
+    height: 650px;
+    background-image: url('./images/gryffindor.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    opacity: 20%;
 }

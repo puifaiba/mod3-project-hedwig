@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 const buttonEvents = () => {
     document.querySelector('.right_close').addEventListener('click', closeRight)
     document.querySelector('.open_right').addEventListener('click', openRight)
+    document.querySelector('.open_details').addEventListener('click', openDetails)
     document.querySelector('.new_msg').addEventListener('click', () => {
         console.log('new msg')
     })
@@ -94,6 +95,11 @@ const openRight = (event) => {
     rightBar.style.display = 'grid'
     workContainer.style.gridTemplateColumns = `${left_width}px auto ${right_width}px`
     document.querySelector('.open_right').style.display = 'none'
+}
+
+const openDetails = (event) => {
+    openRight()
+    document.querySelector('.right_head_text').innerText = 'Details'
 }
 
 const newMsg = (event) => {
