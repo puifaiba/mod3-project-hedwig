@@ -1,13 +1,29 @@
 document.addEventListener('DOMContentLoaded', () => {
     barResizer()
     buttonEvents()
+
+    // Main input box
+    tinymce.init({
+        selector: "#main_chat_box",
+        plugins: "emoticons link image code lists save",
+        toolbar_location: "bottom",
+        hidden_input: false,
+        menubar: false,
+        statusbar: false,
+        toolbar: "emoticons | undo redo | bold italic underline strikethrough | link image | code | bullist numlist",
+        width: 1287,
+        height: 120,
+        setup: function(editor){
+            editor.on('keydown', submitMain)
+        }
+    });
+
 })
 
 const buttonEvents = () => {
     document.querySelector('.right_close').addEventListener('click', closeRight)
     document.querySelector('.open_right').addEventListener('click', openRight)
     document.querySelector('.open_details').addEventListener('click', openDetails)
-    document.querySelector('.main_chat_form').addEventListener('keypress', submitMain)
     document.querySelector('.new_msg').addEventListener('click', newMsg)
 }
 
@@ -102,7 +118,10 @@ const openDetails = () => {
 }
 
 const submitMain = (event) => {
-    console.log(event)
+    if(event.key === 'Enter' && event.shiftKey === false){
+        event.preventDefault()
+        console.log(event.target)
+    }
 }
 
 const newMsg = () => {

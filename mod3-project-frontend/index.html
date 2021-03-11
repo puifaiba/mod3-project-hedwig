@@ -8,18 +8,6 @@
         <link rel="stylesheet" type="text/css" href="styles.css" />
         <script defer type="text/javascript" src="src/index.js"></script>
         <script src="https://cdn.tiny.cloud/1/ezzys0p3wvoeh7zcecjdmd6o1q2aiqxi59amule8lt5ezmkp/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-        <script>
-            tinymce.init({
-              selector: "#main_chat_box",
-              plugins: "emoticons link image code lists save",
-              toolbar_location: "bottom",
-              menubar: false,
-              statusbar: false,
-              toolbar: "emoticons | undo redo | bold italic underline strikethrough | link image | code | bullist numlist | save",
-              width: 1287,
-              height: 120
-            });
-        </script>
     </head>
     <body>
         <div class='client_container'>
@@ -63,7 +51,7 @@
                             <div class='main_foot_content'>
                                 <form class='main_chat_form' action='' method='get'>
                                     <textarea id='main_chat_box' class='main_chat_box' placeholder='Enter message...'></textarea>
-                                    <input class='submit_button_main' type="submitbtn" display='none'>
+                                    <!-- <input class='submit_button_main' type="submitbtn" display='none'> -->
                                 </form>
                             </div>
                         </div>
