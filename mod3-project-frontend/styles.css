@@ -194,7 +194,7 @@ html {
 .login-section {
   background-image: url("./images/hwlogomotto.png");
   background-repeat: no-repeat;
-  background-position: 50% 50%;
+  background-position: center;
   background-color: #000000;
   margin: auto;
   position: absolute;
@@ -208,28 +208,12 @@ html {
   text-align: center;
   position: relative;
   top: 65%;
-  transform: translateY(50%);
 }
 
 #login-form-submit,
 .login-form-field {
   font-family: "Harry Potter", sans-serif;
   font-size: large;
-}
-
-#hw-logo-motto {
-  display: block;
-  margin: auto;
-  position: relative;
-  transform: translateY(50%);
-}
-
-.login-form {
-  display: block;
-  text-align: center;
-  position: relative;
-  top: 20%;
-  transform: translateY(50%);
 }
 
 .profile_username {
