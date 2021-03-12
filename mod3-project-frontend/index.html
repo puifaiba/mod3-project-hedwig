@@ -1,24 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Hedwig</title>
-        <link rel="stylesheet" type="text/css" href="styles.css" />
-        <script defer type="text/javascript" src="src/index.js"></script>
-        <script src="https://cdn.tiny.cloud/1/ezzys0p3wvoeh7zcecjdmd6o1q2aiqxi59amule8lt5ezmkp/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-        <script defer type="text/javascript" src="src/greet.js"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hedwig</title>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <script defer type="text/javascript" src="src/index.js"></script>
+    <script
+      src="https://cdn.tiny.cloud/1/ezzys0p3wvoeh7zcecjdmd6o1q2aiqxi59amule8lt5ezmkp/tinymce/5/tinymce.min.js"
+      referrerpolicy="origin"
+    ></script>
   </head>
   <body>
     <div class="login-section">
-      <div class="login-header">
-        <img
-          id="hw-logo-motto"
-          src="./images/hwlogomotto.png"
-          alt="Hogwarts logo with motto"
-        />
-      </div>
       <form class="login-form">
         <input
           type="text"
@@ -32,84 +27,93 @@
       </form>
     </div>
     <div class="sorting_hat_section">
-        <div>
-            <div class="sorting_hat_outcome">
-                <h1>YOU BELONG IN</h1>
-            </div>
-        </div> 
+      <div>
+        <div class="sorting_hat_outcome">
+          <h1>YOU BELONG IN</h1>
+        </div>
+      </div>
     </div>
-    <body>
-        <div class='client_container'>
-            <div class='client'>
+    <div class="client_container" display="none">
+      <div class="client">
+        <!-- Top Navigation Bar -->
+        <div class="top_nav_bar" role="navigation">
+          <div class="nav_search"></div>
+          <div class="nav_profile"></div>
+        </div>
 
-                <!-- Top Navigation Bar -->
-                <div class='top_nav_bar' role='navigation'>
-                    <div class='nav_search'></div>
-                    <div class='nav_profile'></div>
-                </div>
-
-                <div class='workspace_container'>
-
-                    <!-- Left Side Bar -->
-                    <div class='workspace_left_bar' style='width: 250px;'>
-                        <div class='left_bar_head'>
-                            <div class='left_head_content'>
-                                <img class='school_logo' src='./images/hogwarts.png' width='36px' height='36px'>
-                                <div class='left_head_text'>Hogwarts</div>
-                                <button class='new_msg' type='button'><img src='./images/hedwig-color.png' width='36px' height='36px' display='flex'></button>
-                            </div>
-                        </div>
-                        <div class='left_bar_body'></div>
-                        <div class='resizer' style='left: 250px;'></div>
-                    </div>
-
-                    <!-- Center Main Console -->
-                    <div role='main' class='workspace_main'>
-                        <div class='workspace_main_head'>
-                            <div class='main_head_content'>
-                                <div class='main_head_text'>#Gryffindor-hw-wz-090191</div>
-                                <button class='open_details' type='button'><img src='./images/deathly-hallows.png' width='65px' height='65px' display='flex'></button>
-                                <button class='open_right' type='button' style='display: none;'>➤</button>
-                            </div>
-                        </div>
-                        <div class='workspace_main_body'>
-                            <div class='workspace_main_back'></div>
-                            <div class='workspace_main_content'></div>
-                        </div>
-                        <div class='workspace_main_foot'>
-                            <div class='main_foot_content'>
-                                <form class='main_chat_form' action='' method='get'>
-                                    <textarea id='main_chat_box' class='main_chat_box' placeholder='Enter message...'></textarea>
-                                    <!-- <input class='submit_button_main' type="submitbtn" display='none'> -->
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Left Side Bar -->
-                    <div class='workspace_right_bar' style='width: 350px;'>
-                        <div class='resizer' style='right: 350px;'></div>
-                        <div class='right_bar_head'>
-                            <div class='right_head_content'>
-                                <div class='right_head_text'>Thread</div>
-                                <button class='right_close' type='button'>⌦</button>
-                            </div>
-                        </div>
-                        <div class='right_bar_body'></div>
-                        <div class='right_bar_foot'></div>
-                    </div>
-
-
-                </div>
-            </div>
-            <div class="workspace_main_body">Main Body (Text Body)</div>
-            <div class="workspace_main_foot">Main Foot (Text Input Box)</div>
-            <div class="workspace_right_bar" style="width: 350px">
-                <div class="resizer" style="right: 350px"></div>
-                <div class="right_bar_head">Right Head (Current Thread)</div>
-                <div class="right_bar_body">Right Body (Thread Text Body)</div>
-                <div class="right_bar_foot">Right Foot (Thread Input Box)</div>
+        <div class="workspace_container">
+          <!-- Left Side Bar -->
+          <div class="workspace_left_bar" style="width: 250px">
+            <div class="left_bar_head">
+              <div class="left_head_content">
+                <img
+                  class="school_logo"
+                  src="./images/hogwarts.png"
+                  width="36px"
+                  height="36px"
+                />
+                <div class="left_head_text">Hogwarts</div>
+                <button class="new_msg" type="button">
+                  <img
+                    src="./images/hedwig-color.png"
+                    width="36px"
+                    height="36px"
+                    display="flex"
+                  />
+                </button>
               </div>
+            </div>
+            <div class="left_bar_body"></div>
+            <div class="resizer" style="left: 250px"></div>
+          </div>
+
+          <!-- Center Main Console -->
+          <div role="main" class="workspace_main">
+            <div class="workspace_main_head">
+              <div class="main_head_content">
+                <div class="main_head_text">#Gryffindor-hw-wz-090191</div>
+                <button class="open_details" type="button">
+                  <img
+                    src="./images/deathly-hallows.png"
+                    width="65px"
+                    height="65px"
+                    display="flex"
+                  />
+                </button>
+                <button class="open_right" type="button" style="display: none">
+                  ➤
+                </button>
+              </div>
+            </div>
+            <div class="workspace_main_body">
+              <div class="workspace_main_back"></div>
+              <div class="workspace_main_content"></div>
+            </div>
+            <div class="workspace_main_foot">
+              <div class="main_foot_content">
+                <form class="main_chat_form" action="" method="get">
+                  <textarea
+                    id="main_chat_box"
+                    class="main_chat_box"
+                    placeholder="Enter message..."
+                  ></textarea>
+                  <!-- <input class='submit_button_main' type="submitbtn" display='none'> -->
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- Left Side Bar -->
+          <div class="workspace_right_bar" style="width: 350px">
+            <div class="resizer" style="right: 350px"></div>
+            <div class="right_bar_head">
+              <div class="right_head_content">
+                <div class="right_head_text">Thread</div>
+                <button class="right_close" type="button">⌦</button>
+              </div>
+            </div>
+            <div class="right_bar_body"></div>
+            <div class="right_bar_foot"></div>
           </div>
         </div>
       </div>

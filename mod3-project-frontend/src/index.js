@@ -1,37 +1,85 @@
-const runHPChat = () => {
-  document.addEventListener("DOMContentLoaded", () => {
-    barResizer()
-    buttonEvents()
-    clientContainer.style.display = "block"
-    sortingHatSection.remove()
-
-    // Main input box
-    tinymce.init({
-      selector: "#main_chat_box",
-      plugins: "emoticons link image code lists save",
-      toolbar_location: "bottom",
-      hidden_input: false,
-      menubar: false,
-      statusbar: false,
-      toolbar:
-        "emoticons | undo redo | bold italic underline strikethrough | link image | code | bullist numlist",
-      width: 1287,
-      height: 120,
-      setup: function (editor) {
-        editor.on("keydown", submitMain)
-      },
-    })
+// Boonie Code~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+document.addEventListener("DOMContentLoaded", () => {
+  loginPage()
+  // Main input box
+  tinymce.init({
+    selector: "#main_chat_box",
+    plugins: "emoticons link image code lists save",
+    toolbar_location: "bottom",
+    hidden_input: false,
+    menubar: false,
+    statusbar: false,
+    toolbar:
+      "emoticons | undo redo | bold italic underline strikethrough | link image | code | bullist numlist",
+    width: 1287,
+    height: 120,
+    setup: function (editor) {
+      editor.on("keydown", submitMain)
+    },
   })
+})
+
+USERS_URL = "http://localhost:3000/users/"
+SORTINGHAT_URL = "https://www.potterapi.com/v1/sortinghat"
+
+const clientContainer = document.querySelector(".client_container")
+const loginSection = document.querySelector(".login-section")
+const loginForm = document.querySelector(".login-form")
+const sortingHatSection = document.querySelector(".sorting_hat_section")
+const profileUser = document.querySelector(".profile_username")
+
+function loginPage() {
+  loginForm.addEventListener("submit", (event) => handleLoginSubmit(event))
 }
 
+function handleLoginSubmit(event) {
+  event.preventDefault()
+  const sessionUser = loginForm.username.value
+  fetch(USERS_URL)
+    .then((res) => res.json())
+    .then((usersData) => {
+      let found = false
+      usersData.forEach((user) => {
+        if (user.username === sessionUser) {
+          found = true
+          sortingHatSection.remove()
+          return runHPChat()
+        }
+      })
+      if (!found) {
+        return sortingHat(sessionUser)
+      }
+    })
+  loginForm.reset()
+}
+function sortingHat(sessionUser) {
+  fetch(SORTINGHAT_URL)
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data)
+      const outcome = document.createElement("h2")
+      outcome.innerText = data
+      document.querySelector(".sorting_hat_outcome").append(outcome)
+    })
+  loginSection.remove()
+  sortingHatSection.style.display = "block"
+  setTimeout(runHPChat, 5000)
+}
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Abraham Code~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+const runHPChat = () => {
+  barResizer()
+  buttonEvents()
+}
 const buttonEvents = () => {
   document.querySelector(".right_close").addEventListener("click", closeRight)
   document.querySelector(".open_right").addEventListener("click", openRight)
   document.querySelector(".open_details").addEventListener("click", openDetails)
   document.querySelector(".new_msg").addEventListener("click", newMsg)
 }
-
 const barResizer = () => {
+  clientContainer.style.display = "block"
+  sortingHatSection.style.display = "none"
   const left_min_size = 180
   const left_max_size = 600
   const right_min_size = 260
@@ -113,7 +161,6 @@ const barResizer = () => {
     }
   }
 }
-
 const closeRight = () => {
   const rightBar = document.querySelector(".workspace_right_bar")
   const leftBar = document.querySelector(".workspace_left_bar")
@@ -125,7 +172,6 @@ const closeRight = () => {
   workContainer.style.gridTemplateColumns = `${left_width}px auto 0px`
   document.querySelector(".open_right").style.display = "inline-flex"
 }
-
 const openRight = () => {
   const rightBar = document.querySelector(".workspace_right_bar")
   const leftBar = document.querySelector(".workspace_left_bar")
@@ -140,19 +186,16 @@ const openRight = () => {
   workContainer.style.gridTemplateColumns = `${left_width}px auto ${right_width}px`
   document.querySelector(".open_right").style.display = "none"
 }
-
 const openDetails = () => {
   const rightText = document.querySelector(".right_head_text")
   rightText.innerText = rightText.innerText === "Thread" ? "Details" : "Thread"
 }
-
 const submitMain = (event) => {
   if (event.key === "Enter" && event.shiftKey === false) {
     event.preventDefault()
     console.log(event.target)
   }
 }
-
 const newMsg = () => {
   console.log("new msg")
 }
