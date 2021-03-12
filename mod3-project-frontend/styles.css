@@ -8,8 +8,13 @@ body, html {
   width: 100%;
 }
 
-.client_container, .sorting_hat_section {
+/* .client_container, .sorting_hat_section { */
+.sorting_hat_section, .login-header {
     display: none;
+}
+@font-face {
+    font-family: "Harry Potter";
+    src: url("./font/HARRYP__.TTF");
 }
 
 .client {
@@ -92,7 +97,8 @@ body, html {
     align-items: center;
     margin-right: auto;
     min-width: 0;
-    font-size: 30px;
+    font-family: 'Harry Potter';
+    font-size: 50px;
     font-weight: bold;
 }
 
@@ -155,6 +161,8 @@ body, html {
 .workspace_main_body {
     grid-area: workspace_main_body;
     position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .workspace_main_back {
@@ -169,7 +177,7 @@ body, html {
 
 .main_chat_box {
     display: relative;
-    width: 1100px;
+    width: auto;
     height: 80px;
     align-items: center;
     resize: none;
@@ -180,7 +188,7 @@ body, html {
 .main_chat_form {
     padding: 15px;
     height: 80px;
-    width: 1100px;
+    width: auto;
 }
 
 ::-webkit-scrollbar {
@@ -195,7 +203,7 @@ body, html {
 
 ::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    background: inherit; 
+    background: inherit;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -252,3 +260,51 @@ body, html {
     margin-top: 300px;
   }
   
+  .right_chat_form {
+    padding: 15px;
+    height: 80px;
+    width: auto;
+  }
+
+  .right_chat_box {
+    display: relative;
+    height: 80px;
+    width: auto;
+    align-items: center;
+    resize: none;
+    border: none;
+    background-color: #919191;
+}
+
+.details_content {
+    padding: 15px;
+}
+
+.details_text {
+    font-size: 50px;
+    font-family: "Harry Potter";
+}
+
+.right_bar_body {
+    overflow-y: auto;
+    max-height: 710px;
+}
+
+.message_reciever {
+    display: none;
+    top: 5px;
+}
+
+.recievers {
+    border: none;
+    background-color: #8f8f8f;
+    color: #000000;
+    max-width: inherit;
+    width: 1800px;
+    height: 25px;
+}
+
+.left_bar_body {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
