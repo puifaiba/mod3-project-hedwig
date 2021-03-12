@@ -1,6 +1,7 @@
 // Boonie Code~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 document.addEventListener("DOMContentLoaded", () => {
   loginPage()
+  renderTextbox()
   // Main input box
 })
 
@@ -8,6 +9,7 @@ USERS_URL = "http://localhost:3000/users/"
 HOUSES_URL = "http://localhost:3000/houses/"
 HOUSEUSERS_URL = "http://localhost:3000/house_users/"
 MESSAGES_URL = "http://localhost:3000/messages/"
+CHATROOMS_URL = "http://localhost:3000/chatrooms/"
 SORTINGHAT_URL = "https://www.potterapi.com/v1/sortinghat"
 
 const clientContainer = document.querySelector(".client_container")
@@ -32,6 +34,7 @@ function handleLoginSubmit(event) {
         if (user.username === sessionUser) {
           found = true
           sortingHatSection.remove()
+          document.querySelector(".client_container").id = user.id
           return runHPChat()
         }
       })
@@ -91,53 +94,98 @@ function addUser(houseId, sessionUser) {
           user_id: newUserData.id,
         }),
       }
-
       fetch(HOUSEUSERS_URL, houseUserObject)
         .then((res) => res.json())
         .then((newHouseUserData) => console.log(newHouseUserData))
+      document.querySelector(".client_container").id = newUserData.id
     })
 }
 
-function addComment() {
-  mainChatForm.addEventListener("submit", (event) => {
-    event.preventDefault()
-    const newMessage = document.createElement("p")
-    newMessage.innerText = event.target.main_chat_box.value
-    const mainWorkspace = document.querySelector(".workspace_main_content")
-    mainWorkspace.append(newMessage)
+function renderChatrooms() {
+  fetch(CHATROOMS_URL)
+    .then((res) => res.json())
+    .then((chatroomData) =>
+      chatroomData.forEach((chatroom) => {
+        const leftBarBody = document.querySelector(".left_bar_body")
+        const newChatroom = document.createElement("p")
+        newChatroom.className = chatroom.title
+        newChatroom.id = chatroom.id
+        newChatroom.addEventListener("click", () => {
+          fetch(MESSAGES_URL)
+            .then((res) => res.json())
+            .then((messagesData) =>
+              messagesData.forEach((message) => {
+                const workspaceMain = document.querySelector(
+                  ".workspace_main_content"
+                )
+                const mainHeadtext = document.querySelector(".main_head_text")
+                mainHeadtext.innerText = chatroom.title
+                mainHeadtext.id = chatroom.id
+                const newMessage = document.createElement("p")
 
-    const commentObject = {
-      headers: {"Content-Type": "application/json"},
-      method: "POST",
-      body: JSON.stringify({
-        chatroom_id: xx,
-        user_id: xx,
-        text: newMessage,
-      }),
-    }
+                newMessage.innerText = message.body
+                workspaceMain.append(newMessage)
+              })
+            )
+        })
 
-    fetch(MESSAGES_URL, commentObject)
-      .then((res) => res.json())
-      .then((newMessageData) => console.log(newMessageData))
-  })
+        newChatroom.innerText = chatroom.title
+        leftBarBody.append(newChatroom)
+      })
+    )
 }
+
+const renderChat = () => {
+  fetch(MESSAGES_URL)
+    .then((res) => res.json())
+    .then((messagesData) =>
+      messagesData.forEach((message) => {
+        const workspaceMain = document.querySelector(".workspace_main_content")
+        const mainHeadtext = document.querySelector(".main_head_text")
+        mainHeadtext.innerText = chatroom.title
+        mainHeadtext.id = chatroom.id
+        const newMessage = document.createElement("p")
+
+        newMessage.innerText = message.body
+        workspaceMain.append(newMessage)
+      })
+    )
+}
+
+// function openChatroom() {
+//   fetch(MESSAGES_URL)
+//     .then((res) => res.json())
+//     .then((messagesData) =>
+//       messagesData.forEach((message) => {
+//         const workspaceMain = document.querySelector(".workspace_main_content")
+//         const mainHeadtext = document.querySelector('.main_head_text')
+//         mainHeadtext.iinnerText =
+//         const newMessage = document.createElement("p")
+
+//         newMessage.innerText = message.body
+//         workspaceMain.append(newMessage)
+//       })
+//     )
+// }
+
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Abraham Code~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 const runHPChat = () => {
-  console.log("hi")
   barResizer()
-  renderTextbox()
   buttonEvents()
+  renderChatrooms()
   sortingHatSection.remove()
   clientContainer.style.display = "block"
 }
+
 const buttonEvents = () => {
   document.querySelector(".right_close").addEventListener("click", closeRight)
   document.querySelector(".open_right").addEventListener("click", openRight)
   document.querySelector(".open_details").addEventListener("click", openDetails)
   document.querySelector(".new_msg").addEventListener("click", newMsg)
 }
+
 const barResizer = () => {
   const left_min_size = 180
   const left_max_size = 600
@@ -225,6 +273,7 @@ const barResizer = () => {
     }
   }
 }
+
 const closeRight = () => {
   const rightBar = document.querySelector(".workspace_right_bar")
   const leftBar = document.querySelector(".workspace_left_bar")
@@ -274,7 +323,25 @@ const renderRighttext = () => {
 const submitChat = (event) => {
   if (event.key === "Enter" && event.shiftKey === false) {
     event.preventDefault()
-    console.log(event.target)
+    const newMessage = document.createElement("p")
+    newMessage.innerText = event.target.getElementsByTagName("p")[0].innerText
+    const mainWorkspace = document.querySelector(".workspace_main_content")
+    const mainHeadtext = document.querySelector(".main_head_text")
+    mainWorkspace.append(newMessage)
+    const commentObject = {
+      headers: {"Content-Type": "application/json"},
+      method: "POST",
+      body: JSON.stringify({
+        chatroom_id: mainHeadtext.id,
+        user_id: clientContainer.id,
+        body: newMessage.innerText,
+      }),
+    }
+
+    fetch(MESSAGES_URL, commentObject)
+      .then((res) => res.json())
+      .then(renderChat)
+    event.target.getElementsByTagName("p")[0].remove()
   }
 }
 const newMsg = () => {

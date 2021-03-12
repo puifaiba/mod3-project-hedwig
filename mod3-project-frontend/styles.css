@@ -9,6 +9,7 @@ body {
 }
 body,
 html {
+  font-family: "Harry Potter";
   box-sizing: border-box;
   width: 100%;
 }
@@ -60,6 +61,11 @@ html {
   position: relative;
   padding: 0 12px 0 16px;
 }
+.left_bar_body {
+  font-family: "Harry Potter", sans-serif;
+  font-size: 25px;
+  margin-left: 30px;
+}
 .workspace_right_bar {
   display: grid;
   grid-template-areas: "right_bar_head" "right_bar_body" "right_bar_foot";
@@ -82,6 +88,7 @@ html {
   align-items: center;
   height: 60px;
   min-width: 0;
+  font-size: 50px;
 }
 .right_head_text,
 .main_head_text,
@@ -90,7 +97,7 @@ html {
   align-items: center;
   margin-right: auto;
   min-width: 0;
-  font-size: 30px;
+  font-size: 50px;
   font-weight: bold;
 }
 .left_head_text {
@@ -133,6 +140,15 @@ html {
   left: 0px;
   position: relative;
   background-color: #ffffff;
+  background-image: url("./images/gryffindor.png");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.workspace_main_content {
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: auto;
+  font-size: 30px;
 }
 .workspace_main_head {
   grid-area: workspace_main_head;
@@ -147,17 +163,14 @@ html {
 }
 .workspace_main_body {
   grid-area: workspace_main_body;
-  position: relative;
+  height: auto;
+  max-height: 710px;
   overflow-x: hidden;
   overflow-y: auto;
 }
 .workspace_main_back {
-  display: relative;
+  display: flex;
   height: 650px;
-  background-image: url("./images/gryffindor.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
   opacity: 20%;
 }
 .main_chat_box {

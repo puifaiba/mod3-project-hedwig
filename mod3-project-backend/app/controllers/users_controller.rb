@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+     before_action :user_params, only: [:create]
+
     def index
         users = User.all
         render json: users
@@ -14,7 +16,8 @@ class UsersController < ApplicationController
         render json: @user
     end
 
-    def user_params
-        params.permit(:username)
-    end
+    private
+        def user_params
+            params.permit(:username)
+        end
 end

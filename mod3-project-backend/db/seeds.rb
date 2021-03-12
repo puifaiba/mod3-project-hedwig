@@ -51,3 +51,7 @@ cu3 = ChatroomUser.create!(chatroom_id: chat2.id, user_id: hermione.id)
 cu4 = ChatroomUser.create!(chatroom_id: chat2.id, user_id: ron.id)
 cu5 = ChatroomUser.create!(chatroom_id: chat2.id, user_id: george.id)
 cu6 = ChatroomUser.create!(chatroom_id: chat2.id, user_id: fred.id)
+
+#messages
+m1 = Message.create!(chatroom_id: chat1.id, user_id: ron.id, body: "I need some help over here!")
+m2 = Message.create!(chatroom_id: chat1.id, user_id: hermione.id, body: "What is it now??")
