@@ -8,4 +8,13 @@ class ChatroomUsersController < ApplicationController
         chatroom_user = ChatroomUser.find_by(id: params[:id])
         render json: chatroom_user
     end
+
+    def create
+        @chatroom_user = ChatroomUser.create!(chatroom_user_params) 
+        render json: @chatroom_user
+    end
+
+    def chatroom_user_params
+        params.permit(:chatroom_id, :user_id)
+    end
 end

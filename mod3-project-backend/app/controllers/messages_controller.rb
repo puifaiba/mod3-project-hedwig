@@ -8,4 +8,13 @@ class MessagesController < ApplicationController
         message = Message.find_by(id: params[:id])
         render json: message
     end
+
+    def create
+        @message = Message.create!(user_params) 
+        render json: @message
+    end
+
+    def user_params
+        params.permit(:chatroom_id, :user_id, :body)
+    end
 end
