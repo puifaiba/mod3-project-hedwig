@@ -2,21 +2,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   loginPage()
   // Main input box
-  tinymce.init({
-    selector: "#main_chat_box",
-    plugins: "emoticons link image code lists save",
-    toolbar_location: "bottom",
-    hidden_input: false,
-    menubar: false,
-    statusbar: false,
-    toolbar:
-      "emoticons | undo redo | bold italic underline strikethrough | link image | code | bullist numlist",
-    width: 1287,
-    height: 120,
-    setup: function (editor) {
-      editor.on("keydown", submitMain)
-    },
-  })
+  
 })
 
 USERS_URL = "http://localhost:3000/users/"
@@ -148,87 +134,66 @@ const buttonEvents = () => {
   document.querySelector(".new_msg").addEventListener("click", newMsg)
 }
 const barResizer = () => {
-  clientContainer.style.display = "block"
-  sortingHatSection.style.display = "none"
   const left_min_size = 180
   const left_max_size = 600
   const right_min_size = 260
   const right_max_size = 1000
-  let original_width = 0
-  let original_mouse_x = 0
-  const resize_bars = document.querySelectorAll(".resizer")
-  for (let i = 0; i < resize_bars.length; i++) {
-    const current_resize_bar = resize_bars[i]
-    const current_bar = current_resize_bar.parentNode
-    current_resize_bar.addEventListener("mousedown", (event) => {
-      event.preventDefault()
-      original_width = parseFloat(
-        getComputedStyle(current_bar, null)
-          .getPropertyValue("width")
-          .replace("px", "")
-      )
-      original_mouse_x = event.pageX
-      window.addEventListener("mousemove", resize)
-      window.addEventListener("mouseup", stopResize)
-    })
-    current_resize_bar.addEventListener("dblclick", (event) => {
-      event.preventDefault()
-      const workspace_container = current_bar.parentNode
-      const left_bar = document.querySelector(".workspace_left_bar")
-      const left_width = parseFloat(
-        getComputedStyle(left_bar, null)
-          .getPropertyValue("width")
-          .replace("px", "")
-      )
-      const right_bar = document.querySelector(".workspace_right_bar")
-      const right_width = parseFloat(
-        getComputedStyle(right_bar, null)
-          .getPropertyValue("width")
-          .replace("px", "")
-      )
-      if (current_bar === document.querySelector(".workspace_left_bar")) {
-        current_bar.style.width = "250px"
-        current_resize_bar.style.left = "250px"
-        workspace_container.style.gridTemplateColumns = `250px auto ${right_width}px`
-      } else if (
-        current_bar === document.querySelector(".workspace_right_bar")
-      ) {
-        current_bar.style.width = "350px"
-        current_resize_bar.style.right = "350px"
-        workspace_container.style.gridTemplateColumns = `${left_width}px auto 350px`
+  let original_width = 0;
+  let original_mouse_x = 0;
+  const resize_bars = document.querySelectorAll('.resizer')
+  for(let i=0; i< resize_bars.length; i++){
+      const current_resize_bar = resize_bars[i]
+      const current_bar = current_resize_bar.parentNode
+      current_resize_bar.addEventListener('mousedown', (event) => {
+          event.preventDefault()
+          original_width = parseFloat(getComputedStyle(current_bar, null).getPropertyValue('width').replace('px', ''));
+          original_mouse_x = event.pageX;
+          window.addEventListener('mousemove',resize)
+          window.addEventListener('mouseup', stopResize)
+      })
+      current_resize_bar.addEventListener('dblclick', (event) => {
+          event.preventDefault()
+          const workspace_container = current_bar.parentNode
+          const left_bar = document.querySelector('.workspace_left_bar')
+          const left_width = parseFloat(getComputedStyle(left_bar, null).getPropertyValue('width').replace('px', ''));
+          const right_bar = document.querySelector('.workspace_right_bar')
+          const right_width = parseFloat(getComputedStyle(right_bar, null).getPropertyValue('width').replace('px', ''));
+          if(current_bar === document.querySelector('.workspace_left_bar')){
+              current_bar.style.width = '250px'
+              current_resize_bar.style.left = '250px'
+              workspace_container.style.gridTemplateColumns = `250px auto ${right_width}px`
+          }else if(current_bar === document.querySelector('.workspace_right_bar')){
+              current_bar.style.width = '350px'
+              current_resize_bar.style.right = '350px'
+              workspace_container.style.gridTemplateColumns = `${left_width}px auto 350px`
+          }
+      })
+      const resize = (event) => {
+          const current_bar = current_resize_bar.parentNode
+          const workspace_container = current_bar.parentNode
+          const left_bar = document.querySelector('.workspace_left_bar')
+          const left_width = parseFloat(getComputedStyle(left_bar, null).getPropertyValue('width').replace('px', ''));
+          const right_bar = document.querySelector('.workspace_right_bar')
+          const right_width = parseFloat(getComputedStyle(right_bar, null).getPropertyValue('width').replace('px', ''));
+          if(current_bar === document.querySelector('.workspace_left_bar')){
+              const width = original_width + (event.pageX - original_mouse_x)
+              if(width <= left_max_size && width >= left_min_size){
+                  current_bar.style.width = width + 'px'
+                  current_resize_bar.style.left = width + 'px'
+                  workspace_container.style.gridTemplateColumns = `${width}px auto ${right_width}px`
+              }
+          }else if(current_bar === document.querySelector('.workspace_right_bar')){
+              const width = original_width - (event.pageX - original_mouse_x)
+              if(width <= right_max_size && width >= right_min_size){
+                  current_bar.style.width = width + 'px'
+                  current_resize_bar.style.right = width + 'px'
+                  workspace_container.style.gridTemplateColumns = `${left_width}px auto ${width}px`
+              }
+          }
       }
-    })
-  }
-  const resize = (event) => {
-    const current_bar = current_resize_bar.parentNode
-    const workspace_container = current_bar.parentNode
-    const left_bar = document.querySelector(".workspace_left_bar")
-    const left_width = parseFloat(
-      getComputedStyle(left_bar, null)
-        .getPropertyValue("width")
-        .replace("px", "")
-    )
-    const right_bar = document.querySelector(".workspace_right_bar")
-    const right_width = parseFloat(
-      getComputedStyle(right_bar, null)
-        .getPropertyValue("width")
-        .replace("px", "")
-    )
-    if (current_bar === document.querySelector(".workspace_left_bar")) {
-      const width = original_width + (event.pageX - original_mouse_x)
-      if (width <= left_max_size && width >= left_min_size) {
-        current_bar.style.width = width + "px"
-        current_resize_bar.style.left = width + "px"
-        workspace_container.style.gridTemplateColumns = `${width}px auto ${right_width}px`
+      const stopResize = () => {
+          window.removeEventListener('mousemove', resize)
       }
-    } else if (current_bar === document.querySelector(".workspace_right_bar")) {
-      const width = original_width - (event.pageX - original_mouse_x)
-      if (width <= right_max_size && width >= right_min_size) {
-        current_bar.style.width = width + "px"
-        current_resize_bar.style.right = width + "px"
-        workspace_container.style.gridTemplateColumns = `${left_width}px auto ${width}px`
-      }
-    }
   }
 }
 const closeRight = () => {
@@ -257,15 +222,65 @@ const openRight = () => {
   document.querySelector(".open_right").style.display = "none"
 }
 const openDetails = () => {
-  const rightText = document.querySelector(".right_head_text")
-  rightText.innerText = rightText.innerText === "Thread" ? "Details" : "Thread"
+    const rightText = document.querySelector('.right_head_text')
+    const rightTextBox = document.querySelector('.right_chat_form')
+    const rightFoot = document.querySelector('.right_bar_foot')
+    rightText.innerText = rightText.innerText==='Thread' ? 'Details' : 'Thread';
+    rightTextBox.style.display = rightText.innerText==='Thread' ? 'block' : 'none';
+    rightFoot.style.display = rightText.innerText==='Thread' ? 'block' : 'none';
+    renderRighttext()
 }
-const submitMain = (event) => {
-  if (event.key === "Enter" && event.shiftKey === false) {
-    event.preventDefault()
-    console.log(event.target)
-  }
+
+const renderRighttext = () => {
+    const rightText = document.querySelector('.right_head_text')
+    const detailsContent = document.querySelector('.details_content')
+    const threadContent = document.querySelector('.thread_content')
+    detailsContent.style.display = rightText.innerText==='Thread' ? 'none' : 'flex';
+    threadContent.style.display = rightText.innerText==='Thread' ? 'flex' : 'none';
+}
+
+const submitChat = (event) => {
+    if(event.key === 'Enter' && event.shiftKey === false){
+        event.preventDefault()
+        console.log(event.target)
+    }
 }
 const newMsg = () => {
-  console.log("new msg")
+    const mainHeader = document.querySelector('.main_head_text')
+    const msgReciever = document.querySelector('.message_reciever')
+    msgReciever.style.display = 'block'
+    mainHeader.innerText = 'New Message'
 }
+
+const renderTextbox = () => { 
+        tinymce.init({
+          selector: "#main_chat_box",
+          plugins: "emoticons link image code lists save",
+          toolbar_location: "bottom",
+          hidden_input: false,
+          menubar: false,
+          statusbar: false,
+          toolbar:
+            "emoticons | undo redo | bold italic underline strikethrough | link image | code | bullist numlist",
+          width: "auto",
+          height: 120,
+          setup: function (editor) {
+            editor.on("keydown", submitChat)
+          },
+        })
+
+        tinymce.init({
+          selector: "#right_chat_box",
+          plugins: "emoticons link image code lists save",
+          toolbar_location: "bottom",
+          hidden_input: false,
+          menubar: false,
+          statusbar: false,
+          toolbar: "emoticons | undo redo | bold italic underline strikethrough | link image | code | bullist numlist",
+          width: 'auto',
+          height: 120,
+          setup: function(editor){
+              editor.on('keydown', submitChat)
+          }
+      });
+  }
