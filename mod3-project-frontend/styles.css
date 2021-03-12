@@ -8,6 +8,10 @@ body, html {
   width: 100%;
 }
 
+.client_container, .sorting_hat_section {
+    display: none;
+}
+
 .client {
   display: grid;
   width: 100vw;
@@ -173,14 +177,6 @@ body, html {
     background-color: #919191;
 }
 
-/* .submit_button_main {
-    display: relative;
-    background-color: #919191;
-    height: 45px;
-    width: 45px;
-    align-items: center;
-} */
-
 .main_chat_form {
     padding: 15px;
     height: 80px;
@@ -236,9 +232,23 @@ body, html {
   }
   
   .sorting_hat_section {
+    background-image: url("./images/sortinghat.png");
+    background-repeat: no-repeat;
+    background-position: left center;
     background-color: #000000;
-    display: block;
     margin: auto;
-    position: relative;
-    transform: translateY(50%);
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    align-items: center;
   }
+  
+  .sorting_hat_outcome {
+    font-family: "Harry Potter", sans-serif;
+    font-size: 100px;
+    color: #ffffff;
+    text-align: right;
+    margin-right: 300px;
+    margin-top: 300px;
+  }
+  
