@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
 USERS_URL = "http://localhost:3000/users/"
 HOUSES_URL = "http://localhost:3000/houses/"
 HOUSEUSERS_URL = "http://localhost:3000/house_users/"
+MESSAGES_URL = "http://localhost:3000/messages/"
 SORTINGHAT_URL = "https://www.potterapi.com/v1/sortinghat"
 
 const clientContainer = document.querySelector(".client_container")
@@ -29,6 +30,7 @@ const loginSection = document.querySelector(".login-section")
 const loginForm = document.querySelector(".login-form")
 const sortingHatSection = document.querySelector(".sorting_hat_section")
 const profileUser = document.querySelector(".profile_username")
+const mainChatForm = document.querySelector(".main_chat_form")
 
 function loginPage() {
   loginForm.addEventListener("submit", (event) => handleLoginSubmit(event))
@@ -100,17 +102,39 @@ function addUser(houseId, sessionUser) {
         method: "POST",
         body: JSON.stringify({
           house_id: houseId,
-          user_id: newUserData.id}),
+          user_id: newUserData.id,
+        }),
       }
 
       fetch(HOUSEUSERS_URL, houseUserObject)
         .then((res) => res.json())
         .then((newHouseUserData) => console.log(newHouseUserData))
     })
-  
-
 }
 
+function addComment() {
+  mainChatForm.addEventListener("submit", (event) => {
+    event.preventDefault()
+    const newMessage = document.createElement("p")
+    newMessage.innerText = event.target.main_chat_box.value
+    const mainWorkspace = document.querySelector(".workspace_main_content")
+    mainWorkspace.append(newMessage)
+
+    const commentObject = {
+      headers: {"Content-Type": "application/json"},
+      method: "POST",
+      body: JSON.stringify({
+        chatroom_id: xx,
+        user_id: xx,
+        text: newMessage,
+      }),
+    }
+
+    fetch(MESSAGES_URL, commentObject)
+      .then((res) => res.json())
+      .then((newMessageData) => console.log(newMessageData))
+  })
+}
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Abraham Code~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const runHPChat = () => {

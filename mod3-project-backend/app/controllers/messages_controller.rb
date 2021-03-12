@@ -17,4 +17,10 @@ class MessagesController < ApplicationController
     def user_params
         params.permit(:chatroom_id, :user_id, :body)
     end
+
+    def destroy
+        @message = Message.find_by(id: params[:id])
+        @message.destroy
+        render json: @message
+    end
 end

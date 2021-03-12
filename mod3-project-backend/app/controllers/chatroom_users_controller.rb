@@ -17,4 +17,10 @@ class ChatroomUsersController < ApplicationController
     def chatroom_user_params
         params.permit(:chatroom_id, :user_id)
     end
+
+    def destroy
+        @chatroom_user = ChatroomUser.find_by(id: params[:id])
+        @chatroom_user.destroy
+        render json: @chatroom_user
+    end
 end
