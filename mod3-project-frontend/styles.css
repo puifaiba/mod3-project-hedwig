@@ -33,7 +33,7 @@ html {
   display: grid;
   grid-template-areas: "left_bar_head" "left_bar_body";
   grid-template-columns: auto;
-  grid-template-rows: 80px auto;
+  grid-template-rows: 60px auto;
   grid-area: workspace_left_bar;
   position: relative;
   background-color: #7a0000;
@@ -57,13 +57,14 @@ html {
   grid-area: left_bar_head;
   background-color: #520000;
   position: relative;
+  padding: 0 12px 0 16px;
 }
 
 .workspace_right_bar {
   display: grid;
   grid-template-areas: "right_bar_head" "right_bar_body" "right_bar_foot";
   grid-template-columns: auto;
-  grid-template-rows: 80px auto 150px;
+  grid-template-rows: 60px auto 150px;
   grid-area: workspace_right_bar;
   position: relative;
   background-color: #ff0000;
@@ -73,6 +74,54 @@ html {
   grid-area: right_bar_head;
   background-color: #960000;
   position: relative;
+  padding: 0 12px 0 16px;
+}
+
+.right_head_content,
+.main_head_content,
+.left_head_content {
+  display: flex;
+  align-items: center;
+  height: 60px;
+  min-width: 0;
+}
+
+.right_head_text,
+.main_head_text,
+.left_head_text {
+  display: flex;
+  align-items: center;
+  margin-right: auto;
+  min-width: 0;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.left_head_text {
+  margin-left: 12px;
+}
+
+.right_close,
+.open_right,
+.new_msg,
+.open_details {
+  display: inline-flex;
+  margin-left: 4px;
+  cursor: pointer;
+  justify-content: center;
+  position: relative;
+  height: 36px;
+  width: 36px;
+  background: none;
+  border: none;
+  padding: 0;
+  outline: none;
+  align-items: center;
+  font-size: 30px;
+}
+
+.open_details {
+  margin-right: 10px;
 }
 
 .right_bar_foot {
@@ -85,7 +134,7 @@ html {
   display: grid;
   grid-template-areas: "workspace_main_head" "workspace_main_body" "workspace_main_foot";
   grid-template-columns: auto;
-  grid-template-rows: 80px auto 150px;
+  grid-template-rows: 60px auto 150px;
   grid-area: workspace_main;
   grid-column: auto;
   width: auto;
@@ -98,12 +147,71 @@ html {
   grid-area: workspace_main_head;
   background-color: #bbbbbb;
   position: relative;
+  padding: 0 12px 0 16px;
 }
 
 .workspace_main_foot {
   grid-area: workspace_main_foot;
   background-color: #bbbbbb;
   position: relative;
+}
+
+.workspace_main_body {
+  grid-area: workspace_main_body;
+  position: relative;
+}
+
+.workspace_main_back {
+  display: relative;
+  height: 650px;
+  background-image: url("./images/gryffindor.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 20%;
+}
+
+.main_chat_box {
+  display: relative;
+  width: 1100px;
+  height: 80px;
+  align-items: center;
+  resize: none;
+  border: none;
+  background-color: #919191;
+}
+
+/* .submit_button_main {
+    display: relative;
+    background-color: #919191;
+    height: 45px;
+    width: 45px;
+    align-items: center;
+} */
+
+.main_chat_form {
+  padding: 15px;
+  height: 80px;
+  width: 1100px;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: auto;
+}
+
+::-webkit-scrollbar-track {
+  background: inherit;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: inherit;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(189, 189, 189);
 }
 
 .login-section {
@@ -136,9 +244,21 @@ html {
 }
 
 .sorting_hat_section {
+  background-image: url("./images/sortinghat.png");
+  background-repeat: no-repeat;
+  background-position: left center;
   background-color: #000000;
   display: block;
   margin: auto;
-  position: relative;
-  transform: translateY(50%);
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+}
+
+.sorting_hat_outcome {
+  color: #ffffff;
+  text-align: right;
+  margin-right: 300px;
+  margin-top: 300px;
 }

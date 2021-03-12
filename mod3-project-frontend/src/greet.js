@@ -27,15 +27,16 @@ function handleLoginSubmit(event) {
       usersData.forEach((user) => {
         if (user.username === sessionUser) {
           found = true
-          barResizer()
+          console.log(found)
+          sortingHatSection.remove()
+          return runHPChat()
         }
       })
     })
-
-  if (!found) {
-    sortingHat(sessionUser)
+  if (found === false) {
+    console.log(found)
+    return sortingHat(sessionUser)
   }
-
   loginForm.reset()
 }
 
