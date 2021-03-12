@@ -20,6 +20,8 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 
 USERS_URL = "http://localhost:3000/users/"
+HOUSES_URL = "http://localhost:3000/houses/"
+HOUSEUSERS_URL = "http://localhost:3000/house_users/"
 SORTINGHAT_URL = "https://www.potterapi.com/v1/sortinghat"
 
 const clientContainer = document.querySelector(".client_container")
@@ -47,7 +49,7 @@ function handleLoginSubmit(event) {
         }
       })
       if (!found) {
-        return sortingHat(sessionUser)
+        sortingHat(sessionUser)
       }
     })
   loginForm.reset()
@@ -56,15 +58,59 @@ function sortingHat(sessionUser) {
   fetch(SORTINGHAT_URL)
     .then((res) => res.json())
     .then((data) => {
-      console.log(data)
       const outcome = document.createElement("h2")
       outcome.innerText = data
       document.querySelector(".sorting_hat_outcome").append(outcome)
+
+      switch (data) {
+        case "Gryffindor":
+          houseId = 1
+          break
+        case "Hufflepuff":
+          houseId = 2
+          break
+        case "Ravenclaw":
+          houseId = 3
+          break
+        case "Slytherin":
+          houseId = 4
+          break
+      }
+      addUser(houseId, sessionUser)
     })
+
   loginSection.remove()
   sortingHatSection.style.display = "block"
-  setTimeout(runHPChat, 5000)
+
+  setTimeout(runHPChat, 6000)
 }
+
+function addUser(houseId, sessionUser) {
+  const userObject = {
+    headers: {"Content-Type": "application/json"},
+    method: "POST",
+    body: JSON.stringify({username: sessionUser}),
+  }
+
+  fetch(USERS_URL, userObject)
+    .then((res) => res.json())
+    .then((newUserData) => {
+      const houseUserObject = {
+        headers: {"Content-Type": "application/json"},
+        method: "POST",
+        body: JSON.stringify({
+          house_id: houseId,
+          user_id: newUserData.id}),
+      }
+
+      fetch(HOUSEUSERS_URL, houseUserObject)
+        .then((res) => res.json())
+        .then((newHouseUserData) => console.log(newHouseUserData))
+    })
+  
+
+}
+
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Abraham Code~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const runHPChat = () => {
